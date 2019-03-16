@@ -1,0 +1,30 @@
+header{background: #557a95;}
+
+.navbar-brand{
+	background-image: url('img/logo.png');
+}
+
+.faculty {
+    padding: 4rem 2rem;
+    margin-top: -1px;
+}
+
+.faculty-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.testimonials {
+    padding: 4rem 2rem;
+    margin-top: 50px;
+    background: #E9ECEF;
+}
+
+.testi-cards {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
