@@ -7,7 +7,26 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+var options = {
+	key:fs.readFileSync('ssl/private.key'),
+	cert:fs.readFileSync('ssl/certificate.crt'),
+
+	
+	ca: [
+		fs.readFileSync('ssl/ca_bundle.crt'),
+	],
+	requestCert: true,
+	rejectUnauthorized: false
+};
+
 var app = express();
+https.createServer(options, app).listen(443);
+app.use(function(req, res, next) {
+  if(!req.secure) {
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  next();
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
