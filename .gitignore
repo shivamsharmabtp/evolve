@@ -1,3 +1,4 @@
 node_modules/*
 sequence.txt
 keyfile.json
+nohup.out

@@ -8,30 +8,33 @@ var fs = require('fs');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var options = {
-	key:fs.readFileSync('ssl/private.key'),
-	cert:fs.readFileSync('ssl/certificate.crt'),
+// var options = {
+// 	key:fs.readFileSync('ssl/private.key'),
+// 	cert:fs.readFileSync('ssl/certificate.crt'),
 
 	
-	ca: [
-		fs.readFileSync('ssl/ca_bundle.crt'),
-	],
-	requestCert: true,
-	rejectUnauthorized: false
-};
+// 	ca: [
+// 		fs.readFileSync('ssl/ca_bundle.crt'),
+// 	],
+// 	requestCert: true,
+// 	rejectUnauthorized: false
+// };
 
 var app = express();
-https.createServer(options, app).listen(443);
-app.use(function(req, res, next) {
-  if(!req.secure) {
-    return res.redirect(['https://', req.get('Host'), req.url].join(''));
-  }
-  next();
-});
+app.listen(80, () => {
+  console.log('listening on 80')
+})
+// https.createServer(options, app).listen(443);
+// app.use(function(req, res, next) {
+//   if(!req.secure) {
+//     return res.redirect(['https://', req.get('Host'), req.url].join(''));
+//   }
+//   next();
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -39,6 +42,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/contact', (req,res)=>{
+	res.render('contact')
+})
+
+app.get('/about', (req,res)=>{
+	res.render('about')
+})
+app.get('/courses', (req,res)=>{
+	res.render('course')
+})
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 

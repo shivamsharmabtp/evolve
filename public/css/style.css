@@ -28,3 +28,29 @@ header{background: #557a95;}
     margin-top: 30px;
     flex-wrap: wrap;
 }
+
+.bgImg{
+    background-size: 100%;
+    height: 2000px;
+}
+
+.contacts {
+    margin: 50px;
+    height: fit-content;
+    background: aliceblue;
+    padding: 20px;
+}
+
+span.heading {
+    font-size: 27px;
+}
+
+.contacts>span {
+    display: block;
+}
+
+@media screen and (max-width: 892px) {
+    .bgImg{
+        height : 600px;
+    } 
+}
